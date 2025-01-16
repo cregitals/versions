@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-    <a href="https://packagist.org/packages/pragmarx/version"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/pragmarx/version.svg?style=flat-square"></a>
+    <a href="https://packagist.org/packages/cregitals/versions"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/cregitals/versions.svg?style=flat-square"></a>
     <a href="/antonioribeiro/version/blob/master/LICENSE.md"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
     <a href="https://scrutinizer-version.com/g/antonioribeiro/version/?branch=master"><img alt="Code Quality" src="https://img.shields.io/scrutinizer/g/antonioribeiro/version.svg?style=flat-square"></a>
     <a href="https://scrutinizer-version.com/g/antonioribeiro/version/?branch=master"><img alt="Build" src="https://img.shields.io/scrutinizer/build/g/antonioribeiro/version.svg?style=flat-square"></a>
@@ -14,7 +14,7 @@
 <p align="center">
     <a href="https://scrutinizer-version.com/g/antonioribeiro/version/?branch=master"><img alt="Coverage" src="https://img.shields.io/scrutinizer/coverage/g/antonioribeiro/version.svg?style=flat-square"></a>
     <a href="https://styleci.io/repos/112244465"><img alt="StyleCI" src="https://styleci.io/repos/112244465/shield"></a>
-    <a href="https://packagist.org/packages/pragmarx/version"><img alt="Downloads" src="https://img.shields.io/packagist/dt/pragmarx/version.svg?style=flat-square"></a>
+    <a href="https://packagist.org/packages/cregitals/versions"><img alt="Downloads" src="https://img.shields.io/packagist/dt/cregitals/versions.svg?style=flat-square"></a>
 </p>
 
 ## Description
@@ -59,7 +59,7 @@ MyApp version 2.0.1 - alpha 1227 (commit 49ffe2)
 - Check if a user is looking at the last version of your app.
 - Verify if is Travis CI testing the version it is supposed to be testing.
 - You simple love to version your stuff, and you like to see them in all your pages? That's cool too. :)
-- What's your use case? [Tell us!](https://github.com/antonioribeiro/version/issues/new) 
+- What's your use case? [Tell us!](https://github.com/cregitals/versions/issues/new) 
 
 ## Features
 
@@ -437,7 +437,7 @@ You can test it online: https://regex101.com/r/Ly7O1x/42
 Via Composer
 
 ``` bash
-$ composer require pragmarx/version
+$ composer require cregitals/versions
 ```
 
 Then publish the configuration file you'll have to:
@@ -472,7 +472,7 @@ php artisan version:refresh
 If you are using Git commits on your commit numbers, you may have to add the git repository to your .env file
 
 ``` text
-VERSION_GIT_REMOTE_REPOSITORY=https://github.com/antonioribeiro/version.git
+VERSION_GIT_REMOTE_REPOSITORY=https://github.com/cregitals/versions.git
 ```
 
 **If you are using `git-local` make sure the current folder is a git repository**
@@ -511,4 +511,4 @@ This package is licensed under the MIT License - see the `LICENSE` file for deta
 Pull requests and issues are welcome.
 
 
-<!-- [![Downloads](https://img.shields.io/packagist/dt/pragmarx/version.svg?style=flat-square)](https://packagist.org/packages/pragmarx/version) --> 
+<!-- [![Downloads](https://img.shields.io/packagist/dt/cregitals/versions.svg?style=flat-square)](https://packagist.org/packages/cregitals/versions) --> 
