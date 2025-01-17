@@ -1,4 +1,5 @@
 # Version
+
 ### Take control over your Laravel app version
 
 <p align="center">
@@ -34,6 +35,14 @@ This package is able to parse a SemVer version:
 v2.0.1-alpha.1227
 ```
 
+Install
+
+```
+composer require cregitals/versions
+```
+
+
+
 And translate it to be used as:
 
 ```
@@ -52,20 +61,20 @@ You can use the format function to rewrite and show it in your app, for instance
 MyApp version 2.0.1 - alpha 1227 (commit 49ffe2)
 ```
 
-#### Some use cases for those results could be: 
- 
+#### Some use cases for those results could be:
+
 - Make sure a rollback was successful.
 - Know if an update reached all servers.
 - Check if a user is looking at the last version of your app.
 - Verify if is Travis CI testing the version it is supposed to be testing.
 - You simple love to version your stuff, and you like to see them in all your pages? That's cool too. :)
-- What's your use case? [Tell us!](https://github.com/cregitals/versions/issues/new) 
+- What's your use case? [Tell us!](https://github.com/cregitals/versions/issues/new)
 
 ## Features
 
 ### Easily control you app version using a YAML config file
 
-``` yaml
+```yaml
 version: 
     current:
         major: 1
@@ -81,7 +90,7 @@ version:
 
 Configure it
 
-``` yaml
+```yaml
 commit:
     mode: git-local
 ```
@@ -94,7 +103,7 @@ MyApp version 1.0.0 (commit a9c03f)
 
 Or just use an incremental commit hash/number:
 
-``` yaml
+```yaml
 commit:
     mode: number
     number: 701036
@@ -108,31 +117,31 @@ MyApp version 1.0.0 (commit 701036)
 
 ### Easily increment your version numbers, using Artisan commands
 
-``` bash
+```bash
 php artisan version:commit
 ```
 
-Which should print the new version number 
+Which should print the new version number
 
-``` bash
+```bash
 New commit: 701037
 MyApp version 1.0.0 (commit 701037) 
 ```
 
 Available for all of them:
 
-``` bash
+```bash
 $ php artisan version:major   
 $ php artisan version:minor   
 $ php artisan version:patch   
 $ php artisan version:build   
-``` 
+```
 
 ### The output format is highly configurable
 
 You can configure the :
 
-``` yaml
+```yaml
 format:
   version: "{$major}.{$minor}.{$patch}"
   full: "version {{'format.version'}} (commit {$commit})"
@@ -148,26 +157,26 @@ MyApp v1.0.0-701037
 
 It gives you access to dynamic methods:
 
-``` php
+```php
 Version::compact()
 ```
 
 And should you create a new one:
 
-``` yaml
+```yaml
 format:
   awesome: "awesome version {$major}.{$minor}.{$patch}"
 ```
 
 It will also become callable:
 
-``` php
+```php
 Version::awesome()
 ```
- 
+
 ### A Facade is available
 
-``` php
+```php
 Version::version() // 1.2.25
 
 Version::commit() // 703110
@@ -191,7 +200,7 @@ Version::compact() // v.1.0.0-703110 -- dynamic method
 
 If you prefer not to use the Façade:
 
-``` php
+```php
 dd(
     Version::format()
 );
@@ -201,7 +210,7 @@ The best ways to instantiate it are:
 
 A simple PHP object instantiation:
 
-``` php
+```php
 $version = new \PragmaRX\Version\Package\Version();
 
 dd(
@@ -211,7 +220,7 @@ dd(
 
 Or to get an already instantiated Version object from the container:
 
-``` php
+```php
 dd(
     app(\PragmaRX\Version\Package\Version::class)->format()
 );
@@ -223,26 +232,26 @@ But you have to make sure you [published the config file](/install)
 
 You can use this directive to render a full version format:
 
-``` php
+```php
 @version
 ```
 
 Or choose the format:
 
-``` php
+```php
 @version('full')
 @version('compact')
 ```
 
 You can configure the directive name:
 
-``` yaml
+```yaml
 blade_directive: printversion
 ```
 
-Then 
+Then
 
-``` php
+```php
 @printversion('compact')
 ```
 
@@ -250,13 +259,13 @@ Then
 
 You can use your git tags as application versions, all you need is to set the version source to "git":
 
-``` yaml
+```yaml
 version_source: git
 ```
 
 And if you add a commit hash/number to your tags:
 
-``` bash
+```bash
 $ git tag -a -f v0.1.1.3128
 ```
 
@@ -264,25 +273,25 @@ Version will use it as your app commit hash/number
 
 ### Matching other version (git tags) formats
 
-You probably only need to change the git version matcher 
+You probably only need to change the git version matcher
 
-``` yaml
+```yaml
 git:
   ...
   version:
     matcher: "/[V|v]*[ersion]*\\s*\\.*(\\d+)\\.(\\d+)\\.(\\d+)\\.*(\\w*)/"
 ```
 
-So let's say you tag your releases as 
+So let's say you tag your releases as
 
-``` text
+```text
 2017120299
 YYYYMMDD##
 ```
 
 You can change your matcher to
 
-``` yaml
+```yaml
 git:
   version:
     matcher: "/(\d{4})(\d{2})(\d{2})(?:\d{2})/"
@@ -290,12 +299,12 @@ git:
 
 And remove dots from your formats:
 
-``` yaml
+```yaml
 format:
   compact: "v{$major}{$minor}{$patch}-{$commit}"
 ```
 
-### Using the current application version in your code 
+### Using the current application version in your code
 
 Here's a community example on how to send the app version number when logging an exception to Bugsnag:
 
@@ -317,7 +326,7 @@ class Handler extends ExceptionHandler
         }
     }
 }
-``` 
+```
 
 ### Commit Timestamp
 
@@ -346,7 +355,7 @@ php artisan version:timestamp
 
 To store the current date and time to the config file:
 
-``` text
+```text
 $ php artisan version:minor
 New timestamp: 2019-09-16 18:23:03
 MyApp version 2.3.2 (commit 49ffe2)
@@ -366,7 +375,7 @@ Those are the commands you have at your disposal:
 
 Show the current app version:
 
-``` text
+```text
 $ php artisan version:show
 PragmaRX version 1.0.0 (build 701031)
 
@@ -383,21 +392,21 @@ You need to set `mode: absorb`.
 
 Version can absorb git version and commit to the config file, so you can delete the .git folder and still keep your version and commit for fast access. You have to configure `git_absorb` in your config file:
 
-``` yaml
+```yaml
 commit:
   #...  
   git_absorb: git-local # "false", "git-local" or "git-remote"
 ```
 
-And run it 
+And run it
 
-``` bash
+```bash
 $ php artisan version:absorb
 ```
 
 The usual configuration setup to implement absorb is:
 
-``` yaml
+```yaml
 version_source: config             ## must be set as config
 current:
     major: 1                       ## |
@@ -416,7 +425,7 @@ You need to set `mode: increment`.
 
 Increment the version item:
 
-``` text
+```text
 $ php artisan version:minor
 New minor version: 5
 MyApp version 1.5.0 (commit 701045)
@@ -436,25 +445,25 @@ You can test it online: https://regex101.com/r/Ly7O1x/42
 
 Via Composer
 
-``` bash
+```bash
 $ composer require cregitals/versions
 ```
 
 Then publish the configuration file you'll have to:
 
-``` bash
+```bash
 $ php artisan vendor:publish --provider="PragmaRX\Version\Package\ServiceProvider"
 ```
 
 And you should be good to use it in your views:
 
-``` php
+```php
 @version
 ```
 
-As git versions are cached, you can tell composer to refresh your version numbers every time an update or install occur, by adding the refresh command to `post-autoload-dump`:  
+As git versions are cached, you can tell composer to refresh your version numbers every time an update or install occur, by adding the refresh command to `post-autoload-dump`:
 
-``` json
+```json
 "post-autoload-dump": [
     ...
     "@php artisan version:refresh"
@@ -463,7 +472,7 @@ As git versions are cached, you can tell composer to refresh your version number
 
 [Optional] You may also can automated this process by set inside your `.git/hooks/post-commit`. It will automatic run the command once you have make a commit.
 
-``` bash
+```bash
 #!/bin/sh
 
 php artisan version:refresh
@@ -471,7 +480,7 @@ php artisan version:refresh
 
 If you are using Git commits on your commit numbers, you may have to add the git repository to your .env file
 
-``` text
+```text
 VERSION_GIT_REMOTE_REPOSITORY=https://github.com/cregitals/versions.git
 ```
 
@@ -484,7 +493,7 @@ VERSION_GIT_REMOTE_REPOSITORY=https://github.com/cregitals/versions.git
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
@@ -510,5 +519,4 @@ This package is licensed under the MIT License - see the `LICENSE` file for deta
 
 Pull requests and issues are welcome.
 
-
-<!-- [![Downloads](https://img.shields.io/packagist/dt/cregitals/versions.svg?style=flat-square)](https://packagist.org/packages/cregitals/versions) --> 
+<!-- [![Downloads](https://img.shields.io/packagist/dt/cregitals/versions.svg?style=flat-square)](https://packagist.org/packages/cregitals/versions) -->
